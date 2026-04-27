@@ -96,6 +96,10 @@ def main():
         best_x, best_y = -1, -1
         if current_best_move != -1:
             best_x, best_y = current_best_move // 8, current_best_move % 8
+        elif forced_moves:
+            fallback_move = forced_moves[0]
+            best_x, best_y = fallback_move // 8, fallback_move % 8
+            
         game_socket.send(pickle.dumps([best_x, best_y]))
 
 if __name__ == '__main__':
